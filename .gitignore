@@ -1,0 +1,19 @@
+# MkDocs build output (produced by the deploy workflow, never committed).
+site/
+
+# Python / venv / caches
+__pycache__/
+*.pyc
+.venv/
+.cache/
+
+# Secrets and local state
+.env
+.env.*
+*.key
+*.pem
+.DS_Store
+
+# SkillWeave runtime is local; only the helper is tracked.
+.skillweave/*
+!.skillweave/agents.md
