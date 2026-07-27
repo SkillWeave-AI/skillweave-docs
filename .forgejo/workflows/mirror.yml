@@ -1,0 +1,23 @@
+name: Mirror to GitHub
+on:
+  push:
+    branches: [main]
+
+jobs:
+  mirror:
+    # ubuntu-latest (node-capable): the runner's 'docker' label maps to docker:dind
+    # which has no node, breaking actions/checkout.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Push to GitHub (private mirror under LangeVC)
+        env:
+          GH_TOKEN: ${{ secrets.GH_MIRROR_TOKEN }}
+        run: |
+          git remote add github-mirror https://x-access-token:${GH_TOKEN}@github.com/LangeVC/skillweave-docs.git
+          git push --force github-mirror main
+          # Tags are mirrored best-effort: a tag that already exists on the mirror with a
+          # different object must not fail the branch mirror (that is the job here).
+          git push github-mirror --tags || echo "WARNING: some tags diverge from the GitHub mirror and were left unchanged"
