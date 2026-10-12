@@ -2,12 +2,9 @@
 
 Public documentation site for SkillWeave, served at **https://docs.skillweave.xyz**.
 
-- **Canonical:** Forgejo `skillweave/skillweave-docs` (this repo).
-- **GitHub mirror:** under the `LangeVC` org (`LangeVC/skillweave-docs`).
-- **Build/deploy:** Forgejo-first. A push to `main` builds MkDocs on the
-  self-hosted runner and publishes to the Caddy-served `/srv/docs/skillweave/site`
-  on langevc-prod-01, then purges the Cloudflare cache (see
-  `.forgejo/workflows/deploy.yml`).
+The canonical repository is maintained on self-hosted infrastructure. This GitHub
+repository is the public mirror; issues are welcome, and pull requests are applied
+upstream and synchronized back automatically.
 
-This is currently a **scaffold** — theme, brand system, and pipeline are in place;
-the documentation content is authored in a separate step.
+This is currently a **scaffold** — theme, brand system, and build pipeline are in
+place; the documentation content is authored in a separate step.
